@@ -1,0 +1,23 @@
+cc_binary(
+    name = "black_ops",
+    srcs = [
+        "malloc_mock/black_ops.c",
+        "malloc_mock/black_ops.h"
+    ],
+    linkshared=True
+)
+
+cc_import(
+  name = "shared_libblack_ops",
+  shared_library = "black_ops",
+)
+
+cc_test(
+    name = "risk",
+    srcs = glob([
+        "**/*.cpp",
+        "**/*.h"
+    ]),
+    copts = ["-Iinclude", "-Itests/include"],
+    deps = ["@com_google_googletest//:gtest_main", "//:risk", ":shared_libblack_ops"],
+)

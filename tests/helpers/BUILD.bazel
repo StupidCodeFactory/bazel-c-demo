@@ -1,0 +1,10 @@
+cc_library(
+    name = "mock_malloc",
+    srcs = [
+        "mock_malloc.c",
+        "mock_malloc.h"
+    ],
+    visibility = [
+        "//tests:__pkg__"
+    ]
+)
